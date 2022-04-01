@@ -25,19 +25,31 @@ const images = [
 // Добавь минимальное оформление галереи флексбоксами или гридами через CSS
 // классы.
 
-const imagesRef = images.forEach(({ url, alt }) =>
-  document.querySelector('.gallery').insertAdjacentHTML(
-    'beforeend',
-    `
-  <li class="gallery__item">
-  <img class="img" src="${url}" alt="${alt}" />
-</li>
-  `,
-  ),
-);
+// const imagesRef = images.forEach(({ url, alt }) =>
+//   document.querySelector('.gallery').insertAdjacentHTML(
+//     'beforeend',
+//     `
+//   <li class="gallery__item">
+//   <img class="img" src="${url}" alt="${alt}" />
+// </li>
+//   `,
+//   ),
+// );
+
+const imagesRef = images
+  .map(({ url, alt }) => {
+    return `<li class="gallery__item"><img class="img" src="${url}" alt="${alt}" /></li>
+`;
+  })
+  .join('');
+console.log('imagesRef', imagesRef);
+
+document.querySelector('.gallery').insertAdjacentHTML('afterbegin', imagesRef);
 
 const galleryRef = document.querySelector('.gallery');
 galleryRef.style.display = 'flex';
 galleryRef.style.alignItems = 'center';
 const imgRef = document.querySelectorAll('.img');
 imgRef.forEach(img => (img.style.width = '480px'));
+
+// таск 3 - потрібно за один раз до,авляти в DOM, а не на кожній ітерації циклу
