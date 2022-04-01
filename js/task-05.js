@@ -6,6 +6,11 @@ const inputRef = document.querySelector('input#name-input');
 const outputRef = document.querySelector('span#name-output');
 // console.log('outputRef', outputRef);
 const onInputChange = event => {
-  outputRef.textContent = event.currentTarget.value;
+  if (event.currentTarget.value === '') {
+    outputRef.textContent = 'Anonymous';
+  } else {
+    outputRef.textContent = event.currentTarget.value;
+  }
 };
 inputRef.addEventListener('input', onInputChange);
+// таск 5 - потрібна умова АБО Anonymous, АБО те що ввів юзер
